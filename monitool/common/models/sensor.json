@@ -1,0 +1,27 @@
+{
+  "name": "sensor",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "sensorToken": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "dateJoined": {
+      "type": "date",
+      "required": true
+    },
+    "dateLastActive": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

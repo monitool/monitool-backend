@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "data": {
+    "dataSource": "monitoolDataSource",
+    "public": true
+  },
+  "sensor": {
+    "dataSource": "monitoolDataSource",
+    "public": true
+  },
+  "swagger_Users": {
+    "dataSource": null,
+    "public": true
+  },
+  "swagger_data": {
+    "dataSource": null,
+    "public": true
+  },
+  "swagger_sensors": {
+    "dataSource": null,
+    "public": true
+  }
+}

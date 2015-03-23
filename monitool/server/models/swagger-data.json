@@ -1,0 +1,13 @@
+{
+  "name": "swagger_data",
+  "base": "Model",
+  "idInjection": true,
+  "http": {
+    "path": "data"
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

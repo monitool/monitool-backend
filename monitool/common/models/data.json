@@ -1,0 +1,28 @@
+{
+  "name": "data",
+  "plural": "data",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "sensorToken": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "cpuLoad": {
+      "type": "number",
+      "required": true
+    },
+    "memLoad": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

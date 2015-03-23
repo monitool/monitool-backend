@@ -1,0 +1,13 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "monitoolDataSource": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "monitool",
+    "name": "monitoolDataSource",
+    "connector": "mongodb"
+  }
+}

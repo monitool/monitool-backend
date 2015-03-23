@@ -1,0 +1,13 @@
+{
+  "name": "swagger_Users",
+  "base": "Model",
+  "idInjection": true,
+  "http": {
+    "path": "Users"
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

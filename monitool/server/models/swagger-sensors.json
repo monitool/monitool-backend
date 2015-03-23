@@ -1,0 +1,13 @@
+{
+  "name": "swagger_sensors",
+  "base": "Model",
+  "idInjection": true,
+  "http": {
+    "path": "sensors"
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
