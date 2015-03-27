@@ -1,5 +1,5 @@
 {
-  "name": "monitool",
+  "name": "monitool_users",
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
@@ -23,5 +23,5 @@
     "type": "",
     "url": ""
   },
-  "description": "monitool"
+  "description": "monitool_users"
 }

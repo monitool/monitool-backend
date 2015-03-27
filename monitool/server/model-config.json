@@ -8,42 +8,34 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "monitoolDataSource"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "monitoolDataSource",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "monitoolDataSource",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "monitoolDataSource",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "monitoolDataSource",
     "public": false
   },
   "data": {
     "dataSource": "monitoolDataSource",
     "public": true
   },
-  "sensor": {
+  "complexStat": {
     "dataSource": "monitoolDataSource",
     "public": true
   },
-  "swagger_Users": {
-    "dataSource": null,
-    "public": true
-  },
-  "swagger_data": {
-    "dataSource": null,
-    "public": true
-  },
-  "swagger_sensors": {
-    "dataSource": null,
+  "sensor": {
+    "dataSource": "monitoolDataSource",
     "public": true
   }
 }

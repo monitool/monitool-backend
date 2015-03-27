@@ -1,10 +1,10 @@
 {
   "name": "data",
   "plural": "data",
-  "base": "PersistedModel",
+  "base": "ACL",
   "idInjection": true,
   "properties": {
-    "sensorToken": {
+    "sensorId": {
       "type": "string",
       "required": true
     },
@@ -23,6 +23,25 @@
   },
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": []
 }
