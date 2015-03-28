@@ -1,9 +1,6 @@
 module.exports = function(Data) {
 	Data.beforeRemote('create', function(ctx, unused, next) {
 		ctx.req.body.date = new Date();
-
-		console.log("Date set on " + ctx.req.body.date);
-
 		next();
 	});
 
