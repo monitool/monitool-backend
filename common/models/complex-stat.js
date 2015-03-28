@@ -101,21 +101,21 @@ function validateComplexStat(ctx){
 	var repeat = ctx.req.body.repeat;
 
 	if (period <= 0) {
-		return new Error('Wrong period value ('+period+') for complexStat: '+instance.id);
+		return new Error('Wrong period value ('+period+') for complexStat');
 	}
 
 	if (repeat <= 0) {
-		return new Error('Wrong repeat value ('+repeat+') for complexStat: '+instance.id);
+		return new Error('Wrong repeat value ('+repeat+') for complexStat');
 	}
 
 	if (itemType!='memLoad' && itemType!='cpuLoad' &&  itemType!='discLoad') {
-		return new Error('Wrong item type ('+itemType+') for complexStat: '+instance.id);
+		return new Error('Wrong item type ('+itemType+') for complexStat');
 	}
 	
 	ComplexStat.getApp(function(err, app){
 		app.models.Sensor.find({"where":{"id":sensorId}},function(err, instances){
 			if(instances.length==0){
-				return new Error('Wrong sensorId ('+sensorId+') for complexStat: '+instance.id);
+				return new Error('Wrong sensorId ('+sensorId+') for complexStat');
 			}
 		});
 	});
