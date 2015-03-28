@@ -3,7 +3,6 @@ module.exports = function(app) {
 	app.models.complexStat.find(function(error, instances){
 		var n=instances.length;
 		if(n>0){
-			var n=instances.length;
 			for(var i=0; i<n; ++i){
 				var instance=instances[i];
 				
