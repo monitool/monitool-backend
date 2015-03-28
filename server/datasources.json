@@ -4,12 +4,8 @@
     "connector": "memory"
   },
   "monitoolDataSource": {
-    "host": "ds039311.mongolab.com/monitool",
-    "port": 39311,
-    "username": "monitool-user",
-    "password": "monitool123",
-    "database": "monitool",
+    "url": "mongodb://monitool-user:monitool123@ds039311.mongolab.com:39311/monitool",
     "name": "monitoolDataSource",
-    "connector": "mongodb"
+    "connector": "loopback-connector-mongodb"
   }
 }
