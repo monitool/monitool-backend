@@ -4,7 +4,7 @@ module.exports = function(app) {
       ctx.res.set('Access-Control-Allow-Origin', '*');
       ctx.res.set('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
       ctx.res.set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-      ctx.res.status(status).end();
+      next();
   }
 
   for (var model in app.models) {
