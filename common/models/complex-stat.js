@@ -112,10 +112,12 @@ function validateComplexStat(ctx){
 		return new Error('Wrong item type ('+itemType+') for complexStat: '+instance.id);
 	}
 	
-	app.models.Sensor.find({"where":{"id":sensorId}},function(err, instances){
-		if(instances.length==0){
-			return new Error('Wrong sensorId ('+sensorId+') for complexStat: '+instance.id);
-		}
+	ComplexStat.getApp(function(err, app){
+		app.models.Sensor.find({"where":{"id":sensorId}},function(err, instances){
+			if(instances.length==0){
+				return new Error('Wrong sensorId ('+sensorId+') for complexStat: '+instance.id);
+			}
+		});
 	});
 
 	return;
