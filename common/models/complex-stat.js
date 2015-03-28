@@ -116,7 +116,7 @@ function validateComplexStat(ctx){
 		if(instances.length==0){
 			return new Error('Wrong sensorId ('+sensorId+') for complexStat: '+instance.id);
 		}
-	}
+	});
 
 	return;
 }
