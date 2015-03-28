@@ -10,7 +10,7 @@
     },
     "date": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "cpuLoad": {
       "type": "number",

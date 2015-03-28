@@ -1,4 +1,12 @@
 module.exports = function(Data) {
+	Data.beforeRemote('create', function(ctx, unused, next) {
+		ctx.req.body.date = new Date();
+
+		console.log("Date set on " + ctx.req.body.date);
+
+		next();
+	});
+
 	Data.observe('before save', function(ctx, next) {
 	  Data.getApp(function(err, app){
 		app.models.Sensor.find({"where":{"id":ctx.instance.sensorId}},function(err,instances){

@@ -38,6 +38,7 @@ module.exports = function(ComplexStat) {
 			if(ctx.req.accessToken){
 				ctx.req.body.userId=ctx.req.accessToken.userId;
 				console.log("userId set to "+ctx.req.body.userId);
+
 				next();
 			}else{
 				next({"status": 401,"message": "Authorization Required"});

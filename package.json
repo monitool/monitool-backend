@@ -1,8 +1,8 @@
 {
+  "name": "monitool",
   "engines": {
     "node": "0.10.x"
   },
-  "name": "monitool",
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {

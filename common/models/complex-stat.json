@@ -20,7 +20,7 @@
       "type": "string",
       "required": true
     },
-	"sensorId": {
+    "sensorId": {
       "type": "string",
       "required": true
     },
