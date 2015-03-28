@@ -4,8 +4,10 @@
     "connector": "memory"
   },
   "monitoolDataSource": {
-    "host": "localhost",
-    "port": 27017,
+    "host": "ds039311.mongolab.com/monitool",
+    "port": 39311,
+    "username": "monitool-user",
+    "password": "monitool123",
     "database": "monitool",
     "name": "monitoolDataSource",
     "connector": "mongodb"
