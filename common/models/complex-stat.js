@@ -55,7 +55,7 @@ module.exports = function(ComplexStat) {
 			var repeat=instance.repeat;
 			var itemType=String(instance.itemType);
 			
-			if(itemType!='memLoad' && itemType!='cpuLoad' ){
+			if(itemType!='memLoad' && itemType!='cpuLoad' &&  itemType!='discLoad'){
 				instance.delete();
 				next(new Error('Wrong item type ('+itemType+') for complexStat: '+instance.id));
 				return;

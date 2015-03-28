@@ -19,6 +19,10 @@
     "memLoad": {
       "type": "number",
       "required": true
+    },
+    "discLoad": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
