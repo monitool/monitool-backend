@@ -7,5 +7,12 @@
     "url": "mongodb://monitool-user:monitool123@ds039311.mongolab.com:39311/monitool",
     "name": "monitoolDataSource",
     "connector": "loopback-connector-mongodb"
+  },
+  "monitoolDataSource2": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "monitool",
+    "name": "monitoolDataSource",
+    "connector": "loopback-connector-mongodb"
   }
 }

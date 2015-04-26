@@ -34,7 +34,7 @@
     "dataSource": "monitoolDataSource",
     "public": true
   },
-  "sensor": {
+  "host": {
     "dataSource": "monitoolDataSource",
     "public": true
   }

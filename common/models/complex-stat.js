@@ -1,5 +1,5 @@
 module.exports = function(ComplexStat) {
-	
+	/*
 	ComplexStat.intervObjs = [];
 	
 	ComplexStat.beforeRemote('deleteById',function(ctx, unused, next) {
@@ -165,6 +165,6 @@ module.exports = function(ComplexStat) {
 			// save interval object to array
 			ComplexStat.intervObjs[instance.id]=fId;
 		});
-	}
+	}*/
 };
 

@@ -4,7 +4,7 @@
   "base": "ACL",
   "idInjection": true,
   "properties": {
-    "sensorId": {
+    "hostId": {
       "type": "string",
       "required": true
     },
@@ -23,6 +23,10 @@
     "discLoad": {
       "type": "number",
       "required": true
+    },
+    "complexStatId": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
