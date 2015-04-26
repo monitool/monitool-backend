@@ -1,9 +1,9 @@
 module.exports = function(app) {
 	
-	/*app.models.User.destroyAll();*/
+	/*app.models.User.destroyAll();
 	app.models.Host.destroyAll();
 	app.models.Data.destroyAll();
-	app.models.ComplexStat.destroyAll();
+	app.models.ComplexStat.destroyAll();*/
 	
 	app.models.ComplexStat.find(function(error, instances){
 		var n=instances.length;
