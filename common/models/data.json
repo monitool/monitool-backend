@@ -27,6 +27,10 @@
     "complexStatId": {
       "type": "string",
       "required": false
+    },
+    "isAvg": {
+      "type": "boolean",
+      "required": false
     }
   },
   "validations": [],

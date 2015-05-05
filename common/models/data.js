@@ -2,6 +2,9 @@ var app = require('../../server/server');
 module.exports = function(Data) {
 	Data.beforeRemote('create', function(ctx, unused, next) {
 		ctx.req.body.date = new Date();
+		if(!ctx.req.body.isAvg){
+			ctx.req.body.isAvg=false;
+		}
 		next();
 	});
 

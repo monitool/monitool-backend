@@ -16,24 +16,30 @@ module.exports = function(Host) {
 		
 		var filterSet=true;
 		if(!filter){
-			filter={"where":{"hostId":id}};
+			filter={"where":{and:[{"hostId":id},{"isAvg":false}]}};
 			filterSet=false;
 		}else{
-			filter=JSON.parse(filter);
-		 }
+			try{
+				filter=JSON.parse(filter);
+			}catch(e){
+				callback(e);
+				return;
+			}
+			if(filter.where){
+				var tmpObj=filter.where;
+				filter.where={"and":[tmpObj, {"hostId":id},{"isAvg":false}]};
+			}else{
+				filter.where={and:[{"hostId":id},{"isAvg":false}]};
+			}
+		}
+		 //console.log("filter: "+JSON.stringify(filter));
 		Host.app.models.Data.find(filter,function(err, dataInstances){
-			var responseArr=[];
-			//if(filterSet){
-				var n=dataInstances.length;
-				for(var i=0; i<n; ++i){
-					if(dataInstances[i].hostId==id && !dataInstances[i].complexStatId){
-						responseArr.push(dataInstances[i]);
-					}
-				}
-				callback(null,responseArr);
-			/*}else{
-				callback(null,dataInstances);
-			}*/
+			if(err){
+				callback(err);
+				return;
+			}
+			callback(null,dataInstances);
+
 		});
     }
 	
@@ -61,24 +67,29 @@ module.exports = function(Host) {
 		
 		var filterSet=true;
 		if(filter){
-			filter=JSON.parse(filter);
+			try{
+				filter=JSON.parse(filter);
+				if(filter.where){
+					var tmpObj=filter.where;
+					filter.where={"and":[tmpObj, {"isAvg":false}]};
+				}else{
+					filter.where={"isAvg":false};
+				}
+			}catch(e){
+				callback(e);
+				return;
+			}
 		}else{
-			filter=null;
+			filter={"where":{"isAvg":false}};
 			filterSet=false;
 		}
 		Host.app.models.Data.find(filter,function(err, dataInstances){
-			var responseArr=[];
-			//if(filterSet){
-				var n=dataInstances.length;
-				for(var i=0; i<n; ++i){
-					if(!dataInstances[i].complexStatId){
-						responseArr.push(dataInstances[i]);
-					}
-				}
-				callback(null,responseArr);
-			/*}else{
-				callback(null,dataInstances);
-			}*/
+			if(err){
+				callback(err);
+				return;
+			}
+			callback(null,dataInstances);
+
 		});
     }
 	
@@ -124,9 +135,25 @@ module.exports = function(Host) {
 				filter={"where":{"complexStatId":String(csArr[0].id)}};
 				filterSet=false;
 			}else{
-				filter=JSON.parse(filter);
+				try{
+					filter=JSON.parse(filter);
+				}catch(e){
+					callback(e);
+					return;
+				}
+				
+				if(filter.where){
+					var tmpObj=filter.where;
+					filter.where={"and":[tmpObj, {"complexStatId":String(csArr[0].id)}]};
+				}else{
+					filter.where={"complexStatId":String(csArr[0].id)};
+				}
 			 }
 			Host.app.models.Data.find(filter,function(err, dataInstances){
+				if(err){
+					callback(err);
+					return;
+				}
 				var responseArr=[];
 				if(filterSet){
 					var n=dataInstances.length;
@@ -164,8 +191,15 @@ module.exports = function(Host) {
 	Host.postData = function(id, instance,callback) {
 		instance.hostId=id;
 		instance.date = new Date();
+		if(!instance.isAvg){
+			instance.isAvg=false;
+		}
 		
 		Host.find(  {"where":{"id":id}} ,function(err, hostArr){
+			if(err){
+				callback(err);
+				return;
+			}
 			if(hostArr.length!=1){
 				callback(new Error("Wrong host id: "+id));
 				return;
@@ -199,6 +233,10 @@ module.exports = function(Host) {
 	Host.deleteData = function(hid, did, req ,callback) {
 		if(req.accessToken){
 			Host.app.models.Data.find({"where":{"id":did}},function(err, dataArr){
+				if(err){
+					callback(err);
+					return;
+				}
 				if(dataArr.length==1){
 					var dataInstance=dataArr[0];
 					if(!dataInstance.complexStatId || dataInstance.hostId!=hid){
@@ -206,6 +244,10 @@ module.exports = function(Host) {
 						return;
 					}
 					Host.app.models.ComplexStat.find({"where":{"id":dataInstance.complexStatId}}, function(err, complexArr){
+						if(err){
+							callback(err);
+							return;
+						}
 						if(complexArr.length==1 && complexArr[0].userId==req.accessToken.userId){
 							dataInstance.destroy();
 						}
@@ -248,9 +290,24 @@ module.exports = function(Host) {
 			filter={"where":{"hostId":id}};
 			filterSet=false;
 		}else{
-			filter=JSON.parse(filter);
+			try{
+				filter=JSON.parse(filter);
+			}catch(e){
+				callback(e);
+				return;
+			}
+			if(filter.where){
+				var tmpObj=filter.where;
+				filter.where={"and":[tmpObj, {"hostId":id}]};
+			}else{
+				filter.where={"hostId":id};
+			}
 		 }
 		Host.app.models.ComplexStat.find(filter,function(err, dataInstances){
+			if(err){
+				callback(err);
+				return;
+			}
 			var responseArr=[];
 			if(filterSet){
 				var n=dataInstances.length;
@@ -325,11 +382,19 @@ module.exports = function(Host) {
 		}
 		
 		Host.app.models.ComplexStat.find({"where":{"name":name}},function(err, csArr){
+			if(err){
+				callback(err);
+				return;
+			}
 			if(csArr.length>0){
 				callback(new Error('Wrong name ('+name+') for complexStat. Must be unique.'));
 				return;
 			}else{
 				Host.find({"where":{"id":hostId}},function(err, instances){
+					if(err){
+						callback(err);
+						return;
+					}
 					if(instances.length==0){
 						callback(new Error('Wrong hostId ('+hostId+') for complexStat'));
 						return;
@@ -358,6 +423,10 @@ module.exports = function(Host) {
 							
 			// get data with proper date
 			Host.app.models.Data.find({"where":{"and":[{"hostId":instance.hostId},{"date":{"gt":gtDate}}]}},function(err, dataInstances){
+				if(err){
+					callback(err);
+					return;
+				}
 				if(dataInstances.length<1){
 					console.log("no data found");
 					return;
@@ -379,7 +448,8 @@ module.exports = function(Host) {
 					"cpuLoad": (cpuLoadSum/dataInstances.length),
 					"memLoad": (memLoadSum/dataInstances.length),
 					"discLoad": (discLoadSum/dataInstances.length),
-					"complexStatId": instance.id
+					"complexStatId": instance.id,
+					"isAvg": false
 				  };
 				  
 				  //console.log("stat value added: "+newData);
@@ -459,7 +529,10 @@ module.exports = function(Host) {
 		
 		if(req.accessToken){
 			Host.app.models.ComplexStat.find({"where":{"id":sid}},function(err, arr){
-				if(err) callback(err);
+				if(err){
+					callback(err);
+					return;
+				}
 				if(arr.length==1 && arr[0].userId==req.accessToken.userId){
 					var instance=arr[0];
 					if(instance.hostId!=hid){
@@ -471,7 +544,10 @@ module.exports = function(Host) {
 					console.log("interval cleared for "+instance.id);
 					
 					Host.app.models.Data.find({"where":{"complexStatId":sid}}, function(err, dataArr){
-						if(err) callback(err);
+						if(err){
+							callback(err);
+							return;
+						}
 						
 						console.log(dataArr.length+" instances of data destroyed");
 						for(var i=0; i<dataArr.length; ++i){
