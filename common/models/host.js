@@ -20,10 +20,9 @@ module.exports = function(Host) {
 			filterSet=false;
 		}else{
 			try{
-				filter=JSON.parse(filter);
+				filter=JSON.parse(req.query.filter);
 			}catch(e){
-				callback(e);
-				return;
+				filter=req.query.filter;
 			}
 			if(filter.where){
 				var tmpObj=filter.where;
@@ -68,7 +67,11 @@ module.exports = function(Host) {
 		var filterSet=true;
 		if(filter){
 			try{
-				filter=JSON.parse(filter);
+				try{
+					filter=JSON.parse(req.query.filter);
+				}catch(e){
+					filter=req.query.filter;
+				}
 				if(filter.where){
 					var tmpObj=filter.where;
 					filter.where={"and":[tmpObj, {"isAvg":false}]};
@@ -136,10 +139,9 @@ module.exports = function(Host) {
 				filterSet=false;
 			}else{
 				try{
-					filter=JSON.parse(filter);
+					filter=JSON.parse(req.query.filter);
 				}catch(e){
-					callback(e);
-					return;
+					filter=req.query.filter;
 				}
 				
 				if(filter.where){
@@ -291,10 +293,9 @@ module.exports = function(Host) {
 			filterSet=false;
 		}else{
 			try{
-				filter=JSON.parse(filter);
+				filter=JSON.parse(req.query.filter);
 			}catch(e){
-				callback(e);
-				return;
+				filter=req.query.filter;
 			}
 			if(filter.where){
 				var tmpObj=filter.where;
